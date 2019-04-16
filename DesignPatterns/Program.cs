@@ -14,7 +14,9 @@ namespace DesignPatterns
             //BehavioralPatterns.Observer.Using.Use();
             //BehavioralPatterns.State.Using.Use();
             //BehavioralPatterns.Strategy.Using.Use();
-            BehavioralPatterns.TemplateMethod.Using.Use();
+            //BehavioralPatterns.TemplateMethod.Using.Use();
+            //BehavioralPatterns.Visitor.Using.Use();
+            BehavioralPatterns.Memento.Using.Use();
         }
     }
 }
