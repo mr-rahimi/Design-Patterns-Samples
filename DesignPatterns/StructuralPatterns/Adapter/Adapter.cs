@@ -6,34 +6,46 @@ using System.Threading.Tasks;
 
 namespace DesignPatterns.StructuralPatterns.Adapter
 {
-    public class OldProduct
+    public class OldLogger
     {
-        public void Request()
+        public virtual void LogError()
         {
-            Console.WriteLine("old requesting");
+            Console.WriteLine("old log error");
+        }
+        public virtual void LogInfo()
+        {
+            Console.WriteLine("old log info");
         }
     }
-    public class Product
+    public class Logger
     {
-        public virtual void Request()
+        public virtual void LogError()
         {
-            Console.WriteLine("new requesting");
+            Console.WriteLine("log error");
+        }
+        public virtual void LogInfo()
+        {
+            Console.WriteLine("log info");
         }
     }
-    class OldProductAdapter:Product
+    class OldLoggerAdapter: Logger
     {
-        OldProduct oldProduct = new OldProduct();
-        public override void Request()
+        OldLogger oldProduct = new OldLogger();
+        public override void LogError()
         {
-            oldProduct.Request();
+            oldProduct.LogError();
+        } 
+        public override void LogInfo()
+        {
+            oldProduct.LogInfo();
         } 
     }
     public class Using
     {
         public static void Use()
         {
-            Product product = new OldProductAdapter();
-            product.Request(); 
+            Logger logger = new OldLoggerAdapter();
+            logger.LogInfo(); 
             // Wait for user
 
             Console.ReadKey();

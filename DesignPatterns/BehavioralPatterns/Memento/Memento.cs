@@ -12,6 +12,8 @@ namespace DesignPatterns.BehavioralPatterns.Memento
         T CreateState();
         void RestoreState(T state);
     }
+
+    // memento
     public class Snapshot
     {
         public Snapshot(string name, string family)
@@ -22,6 +24,8 @@ namespace DesignPatterns.BehavioralPatterns.Memento
         public string Name { get; set; }
         public string Family { get; set; }
     }
+
+    // originator
     public class Person : IMemento<Snapshot>
     {
         public string Name { get; set; }

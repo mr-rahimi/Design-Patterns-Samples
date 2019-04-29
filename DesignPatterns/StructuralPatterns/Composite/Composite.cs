@@ -21,10 +21,10 @@ namespace DesignPatterns.StructuralPatterns.Composite
         public abstract void Remove(Component c);
         public abstract void Display(int depth);
     }
-    public class Composite:Component
+    public class Composite : Component
     {
         private List<Component> _children = new List<Component>();
-        public Composite(string name):base(name)
+        public Composite(string name) : base(name)
         {
         }
 
@@ -80,6 +80,9 @@ namespace DesignPatterns.StructuralPatterns.Composite
 
             Component child = new Composite("child");
             root.Add(child);
+
+            Component child1 = new Composite("child1");
+            child.Add(child1);
 
             Component leaf = new Leaf("leaf");
             root.Add(leaf);

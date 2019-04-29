@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace DesignPatterns.CreationalPatterns.Prototype
 {
-    public abstract class Prototype
+    public interface IPrototype 
+    {
+         object Clone();
+    }
+
+    public class Product : IPrototype
     {
         public string Name { get; set; }
         public string Color { get; set; }
-        public abstract Prototype Clone();
-    }
-
-    public class Product : Prototype
-    {
-        public override Prototype Clone()
+        public object Clone()
         {
-            return (Prototype)this.MemberwiseClone();
+            return this.MemberwiseClone();
         }
     }
     public class Using
