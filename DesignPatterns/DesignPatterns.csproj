@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BehavioralPatterns\ChainOfRepository\ChainOfRepository.cs" />
+    <Compile Include="BehavioralPatterns\ChainOfResponsibility\ChainOfResponsibility.cs" />
     <Compile Include="BehavioralPatterns\Command\Command.cs" />
     <Compile Include="BehavioralPatterns\Interpreter\Interpreter.cs" />
     <Compile Include="BehavioralPatterns\Iterator\Iterator.cs" />
