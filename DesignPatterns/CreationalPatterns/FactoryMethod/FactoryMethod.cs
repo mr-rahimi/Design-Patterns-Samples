@@ -17,7 +17,7 @@ namespace DesignPatterns.CreationalPatterns.FactoryMethod
     public class ProductB : IProduct
     {
     }
-    //step3: create creator type(interface or class or abstact class)
+    //step3: create base creator type(interface or class or abstact class)
     public abstract class Creator
     {
         public abstract IProduct FactoryMethod();
