@@ -6,71 +6,80 @@ using System.Threading.Tasks;
 
 namespace DesignPatterns.StructuralPatterns.Decorator
 {
-    public abstract class Component
+    public interface IProduct
     {
-        public abstract void Operation();
+        int Id { get; set; }
+        string Name { get; set; }
+        string Description { get; set; }
+        void Display();
     }
-    public class ConcreteComponent:Component
+    public class Product : IProduct
     {
-        public override void Operation()
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public virtual void Display()
         {
-            Console.WriteLine("ConcreteComponent.Operation()");
-        }
-    }
-    abstract class Decorator : Component
-
-    {
-        protected Component component;
-
-        public void SetComponent(Component component)
-        {
-            this.component = component;
-        }
-
-        public override void Operation()
-        {
-            if (component != null)
-            {
-                component.Operation();
-            }
+            Console.WriteLine($"id:{Id} ,name:{Name} ,description:{Description}");
         }
     }
-    class ConcreteDecoratorA : Decorator
-
+    abstract class Decorator : IProduct
     {
-        public override void Operation()
+        protected Product product;
+        public Decorator(Product product)
         {
-            base.Operation();
-            Console.WriteLine("ConcreteDecoratorA.Operation()");
+            this.product = product;
+        }
+
+        public int Id { get => ((IProduct)product).Id; set => ((IProduct)product).Id = value; }
+        public string Name { get => ((IProduct)product).Name; set => ((IProduct)product).Name = value; }
+        public string Description { get => ((IProduct)product).Description; set => ((IProduct)product).Description = value; }
+
+        public virtual void Display()
+        {
+            ((IProduct)product).Display();
         }
     }
-    class ConcreteDecoratorB : Decorator
-
+    class ToJsonDecorator : Decorator
     {
-        public override void Operation()
+        public ToJsonDecorator(Product product) : base(product)
         {
-            base.Operation();
-            AddedBehavior();
-            Console.WriteLine("ConcreteDecoratorB.Operation()");
         }
-
-        public void AddedBehavior()
+        public string ToJson()
         {
+            return product.ToString();
+        }
+        public override void Display()
+        {
+            Console.WriteLine(ToJson());
+        }
+    }
+    class ToXmlDecorator : Decorator
+    {
+        public ToXmlDecorator(Product product) : base(product)
+        {
+        }
+        public string ToXml()
+        {
+            return this.ToString();
+        }
+        public override void Display()
+        {
+            Console.WriteLine(ToXml());
         }
     }
     public class Using
     {
         public static void Use()
         {
-            ConcreteComponent component = new ConcreteComponent();
-            ConcreteDecoratorA componentDecoratorA = new ConcreteDecoratorA();
-            ConcreteDecoratorB componentDecoratorB = new ConcreteDecoratorB();
+            Product product = new Product() { Id = 1, Name = "Mobile", Description = "Mobile Description" };
 
-            componentDecoratorA.SetComponent(component);
-            componentDecoratorB.SetComponent(component);
+            ToJsonDecorator toJsonDecorator = new ToJsonDecorator(product);
+            ToXmlDecorator toXmlDecorator = new ToXmlDecorator(product);
 
-            componentDecoratorA.Operation();
-            componentDecoratorB.AddedBehavior();
+            product.Display();
+            toJsonDecorator.Display();
+            Console.WriteLine(toXmlDecorator.ToXml());
             // Wait for user
 
             Console.ReadKey();

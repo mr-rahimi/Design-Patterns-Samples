@@ -47,10 +47,12 @@
     <Compile Include="BehavioralPatterns\Interpreter\Interpreter.cs" />
     <Compile Include="BehavioralPatterns\Iterator\Iterator.cs" />
     <Compile Include="BehavioralPatterns\Mediator\Mediator.cs" />
+    <Compile Include="BehavioralPatterns\Memento\Memento.cs" />
     <Compile Include="BehavioralPatterns\Observer\Observer.cs" />
     <Compile Include="BehavioralPatterns\State\State.cs" />
     <Compile Include="BehavioralPatterns\Strategy\Strategy.cs" />
     <Compile Include="BehavioralPatterns\TemplateMethod\TemplateMethod.cs" />
+    <Compile Include="BehavioralPatterns\Visitor\Visitor.cs" />
     <Compile Include="CreationalPatterns\Builder\Builder.cs" />
     <Compile Include="CreationalPatterns\FactoryMethod\FactoryMethod.cs" />
     <Compile Include="CreationalPatterns\Prototype\Prototype.cs" />

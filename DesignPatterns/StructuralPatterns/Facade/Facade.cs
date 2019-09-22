@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace DesignPatterns.StructuralPatterns.Facade
 {
     class SubSystemOne
-
     {
         public void MethodOne()
         {

@@ -6,47 +6,47 @@ using System.Threading.Tasks;
 
 namespace DesignPatterns.StructuralPatterns.Bridge
 {
-    public abstract class Abstraction
+    public class Logger
     {
-        public Implementor Implementor { protected get; set; }
-        public abstract void Operation();
-    }
-    public abstract class Implementor
-    {
-        public abstract void Operation();
-    }
-    public class RefinedAbstraction : Abstraction
-    {
-        public override void Operation()
+        public ILogger LogImplementor { protected get; set; }
+        public void LogError(string message)
         {
-            Implementor.Operation();
+            LogImplementor.Log(message);
+        }
+        public void LogInfo(string message)
+        {
+            LogImplementor.Log(message);
         }
     }
-    public class ConcreteImplementorA : Implementor
-
+    public interface ILogger
     {
-        public override void Operation()
+        void Log(string message);
+    }
+    public class DatabaseLogger : ILogger
+    {
+        public void Log(string message)
         {
-            Console.WriteLine("ConcreteImplementorA Operation");
+            Console.WriteLine("log to database: " + message);
         }
     }
-    public class ConcreteImplementorB : Implementor
-
+    public class FileLogger : ILogger
     {
-        public override void Operation()
+        public void Log(string message)
         {
-            Console.WriteLine("ConcreteImplementorB Operation");
+            Console.WriteLine("log to file : "+ message);
         }
     }
+    
     public class Using
     {
         public static void Use()
         {
-            Abstraction abstraction = new RefinedAbstraction();
-            abstraction.Implementor = new ConcreteImplementorA();
-            abstraction.Operation();
-            abstraction.Implementor = new ConcreteImplementorB();
-            abstraction.Operation();
+            var logger = new Logger();
+            logger.LogImplementor= new FileLogger();
+            logger.LogInfo("some info");
+            logger.LogImplementor= new DatabaseLogger();
+            logger.LogInfo("some info");
+
             // Wait for user
 
             Console.ReadKey();
